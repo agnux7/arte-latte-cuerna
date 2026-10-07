@@ -41,7 +41,7 @@
     background-attachment:fixed;
     overflow-x:hidden;
   }
-  img{max-width:100%;display:block}
+  img{max-width:100%;height:auto;display:block}
   a{color:inherit}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
 
@@ -135,22 +135,9 @@
   .fig span{font-weight:500}
   .fig.free{border-style:solid;background:var(--ink);color:var(--paper)}
 
-  /* rubric */
-  table{width:100%;border-collapse:collapse;margin-top:26px;font-size:.98rem}
-  th,td{text-align:left;padding:16px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);border-bottom:1.5px solid var(--ink)}
-  td:first-child{font-weight:800;width:28%}
-  td:last-child{white-space:nowrap;font-weight:500}
-  td p{color:var(--ink-soft)}
-  .total{display:flex;justify-content:space-between;align-items:baseline;padding:16px 12px;font-weight:800;font-size:1.1rem}
-  @media (max-width:640px){
-    thead{display:none}
-    tr{display:block;padding:16px 0;border-bottom:1px solid var(--line)}
-    td{display:block;border:0;padding:2px 0;width:auto!important}
-    td:last-child{font-size:.85rem;color:var(--ink-soft);margin-top:4px}
-    td:last-child::before{content:"Escala: "}
-    .total{padding:16px 0}
-  }
+  /* criteria */
+  .crit{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;list-style:none}
+  .crit li{border:1.5px solid var(--ink);border-radius:999px;padding:.5em 1.1em;font-weight:500}
 
   /* rules list */
   .rules{list-style:none;display:grid;gap:14px;margin-top:22px}
@@ -198,7 +185,7 @@
     <div class="links">
       <a href="#evento">Evento</a>
       <a href="#dinamica">Dinámica</a>
-      <a href="#rubrica">Rúbrica</a>
+      <a href="#rubrica">Evaluación</a>
       <a href="#reglas">Reglas</a>
       <a href="#ubicacion">Ubicación</a>
     </div>
@@ -334,19 +321,15 @@
 <section id="rubrica">
   <div class="wrap reveal">
     <span class="eyebrow">Rondas 2 y 3</span>
-    <h2>Rúbrica oficial</h2>
-    <p class="lead">Cada juez califica de forma individual del 1 (deficiente) al 5 (excelente) en cada criterio. Máximo 25 puntos por juez.</p>
-    <table>
-      <thead><tr><th>Criterio</th><th>Qué se evalúa</th><th>Escala</th></tr></thead>
-      <tbody>
-        <tr><td>Técnica, contraste y enfoque</td><td><p>Diseño perfectamente centrado respecto al asa. Blanco (microespuma) y marrón (crema del espresso) bien definidos, limpios y sin manchas.</p></td><td>1 – 5</td></tr>
-        <tr><td>Definición y nitidez</td><td><p>Líneas del patrón claras. Cortes y capas nítidos, bien delimitados y sin burbujas en la superficie.</p></td><td>1 – 5</td></tr>
-        <tr><td>Simetría</td><td><p>Las dos mitades del patrón deben coincidir al trazar una línea imaginaria por el centro de la taza.</p></td><td>1 – 5</td></tr>
-        <tr><td>Dificultad técnica</td><td><p>Complejidad del diseño: número de elementos, capas en el tulipán, finura de líneas y precisión requerida.</p></td><td>1 – 5</td></tr>
-        <tr><td>Uso de espacio</td><td><p>El patrón ocupa la taza de 180 ml de forma armónica, en proporción con el borde, sin verse comprimido ni desbordado.</p></td><td>1 – 5</td></tr>
-      </tbody>
-    </table>
-    <div class="total"><span>Total por juez</span><span>25 pts</span></div>
+    <h2>Cómo se califica</h2>
+    <p class="lead">En la segunda ronda y en la final, un panel de tres jueces califica cada taza de forma individual con una rúbrica oficial. Estos son los aspectos que se toman en cuenta:</p>
+    <ul class="crit">
+      <li>Técnica, contraste y enfoque</li>
+      <li>Definición y nitidez</li>
+      <li>Simetría</li>
+      <li>Dificultad técnica</li>
+      <li>Uso de espacio</li>
+    </ul>
   </div>
 </section>
 
