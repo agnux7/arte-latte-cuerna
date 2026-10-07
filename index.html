@@ -76,9 +76,8 @@
   @keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
   @media (prefers-reduced-motion:reduce){.cow,.seal{animation:none}}
   .hero-side{text-align:left;justify-self:end}
-  .seal{width:150px;margin-bottom:24px;animation:spin 40s linear infinite}
+  .seal{width:150px;animation:spin 40s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .hero-side .prizes{font-size:clamp(1.2rem,2.4vw,1.75rem);line-height:1.35;font-weight:400}
   .hero-cta{margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .countdown{margin-top:22px;font-size:.92rem;color:var(--ink-soft);letter-spacing:.04em}
   .countdown b{font-weight:800;color:var(--ink)}
@@ -89,7 +88,7 @@
     .hero h1 .ed{font-size:.45em}
     .hero-date{grid-area:date}
     .hero-side{grid-area:side;justify-self:end;text-align:right}
-    .seal{width:96px;margin:0 0 12px auto}
+    .seal{width:96px;margin:0 0 0 auto}
     .hero-date .d{letter-spacing:.1em}
     .hero-date .times{margin-top:14px;font-size:.85rem;white-space:nowrap}
   }
@@ -207,7 +206,6 @@
       <img class="cow" src="img/vaca.png" width="403" height="526" alt="Ilustración de una vaca vertiendo leche en una taza de café">
       <div class="hero-side">
         <img class="seal" src="img/sello.png" width="157" height="158" alt="Coincidir · Convivir · Competir">
-        <div class="prizes">Premios para<br>1er lugar<br>2do lugar<br>3er lugar</div>
       </div>
     </div>
 
