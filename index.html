@@ -117,6 +117,17 @@
   .info .v{font-size:1.15rem;font-weight:500;margin-top:6px;line-height:1.35}
   @media (max-width:760px){.info{grid-template-columns:1fr}.info>div{border-right:0;border-bottom:1.5px solid var(--ink)}.info>div:last-child{border-bottom:0}}
 
+  /* fee + note */
+  .fee{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+  .fee>div{background:var(--ink);color:var(--paper);border-radius:18px;padding:20px 24px}
+  .fee .k{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;font-weight:500}
+  .fee .v{font-weight:900;font-size:clamp(1.8rem,4vw,2.4rem);letter-spacing:-.02em;line-height:1.1;margin-top:4px}
+  .fee small{font-size:.45em;font-weight:500;letter-spacing:.05em}
+  @media (max-width:760px){.fee{grid-template-columns:1fr 1fr}.fee>div:first-child{grid-column:1/-1}}
+  .note{margin-top:18px;border:1.5px dashed var(--ink);border-radius:18px;padding:20px 24px;font-family:var(--serif)}
+  .note-k{font-family:var(--sans);font-weight:800;display:block;margin-bottom:4px}
+  .note p{color:var(--ink-soft)}
+
   /* roulette */
   .figs{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
   .fig{flex:1 1 140px;text-align:center;border:1.5px dashed var(--ink);border-radius:18px;padding:20px 12px}
@@ -218,6 +229,7 @@
       <a class="btn ghost" href="#dinamica">Ver dinámica</a>
     </div>
     <p class="countdown" id="countdown"></p>
+    <p class="countdown" style="margin-top:6px">Inscripción $200 MXN · cierra el 31 de octubre · espectadores gratis</p>
   </div>
 </header>
 
@@ -225,7 +237,7 @@
   <div class="wrap reveal">
     <span class="eyebrow">Segunda edición · Cuernavaca, Morelos</span>
     <h2>Coincidir, convivir, competir.</h2>
-    <p class="lead">El Concurso de Arte Latte busca premiar la destreza, creatividad y consistencia técnica de los mejores profesionales y entusiastas del café en Morelos. Organiza Café Coincidencia, y la entrada es libre para quien quiera venir a ver.</p>
+    <p class="lead">El Concurso de Arte Latte busca premiar la destreza, creatividad y consistencia técnica de los mejores profesionales y entusiastas del café en Morelos. Organiza Café Coincidencia, y los espectadores entran gratis.</p>
 
     <div class="info">
       <div><div class="k">Fecha</div><div class="v">Lunes 2 de noviembre, 2026</div></div>
@@ -239,11 +251,19 @@
   <div class="wrap reveal">
     <span class="eyebrow">Para competir</span>
     <h2>Requisitos</h2>
-    <div class="grid g3" style="margin-top:26px">
+    <p class="lead">Cupo limitado. Las inscripciones cierran el <strong>31 de octubre</strong>.</p>
+
+    <div class="fee">
+      <div><div class="k">Inscripción</div><div class="v">$200 <small>MXN</small></div></div>
+      <div><div class="k">Fecha límite</div><div class="v">31 oct</div></div>
+      <div><div class="k">Espectadores</div><div class="v">Gratis</div></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:18px">
       <div class="card">
         <span class="num">01</span>
         <h3>Inscripción</h3>
-        <p>Completa el pago y el formulario oficial antes de la fecha límite.</p>
+        <p>Necesitas conocimientos básicos de arte latte. Completa el formulario y el pago de $200 MXN; tu lugar queda confirmado una vez que ambos estén listos. Al completar tu registro conocerás todos los detalles de la competencia.</p>
       </div>
       <div class="card">
         <span class="num">02</span>
@@ -255,6 +275,11 @@
         <h3>Lo que te damos</h3>
         <p>Máquina de espresso, molino, café en grano, leche entera y tazas reglamentarias de 180 ml.</p>
       </div>
+    </div>
+
+    <div class="note">
+      <span class="note-k">*Nota · Ven a practicar</span>
+      <p>Desde hoy y hasta el 31 de octubre, si vienes a Café Coincidencia por una bebida caliente, puedes pasar a la barra a practicar con la máquina y las tazas. Sujeto a disponibilidad de la barra.</p>
     </div>
   </div>
 </section>
@@ -377,16 +402,16 @@
 <section class="final">
   <div class="wrap reveal">
     <h2>¿Te avientas?</h2>
-    <p>Inscríbete con el formulario oficial. También puedes escribirle por DM a Coincidencia o por WhatsApp.</p>
+    <p>Inscríbete con el formulario oficial: $200 MXN, cupo limitado, hasta el 31 de octubre. También puedes escribirle por <a href="https://www.instagram.com/cafecoincidencia/" target="_blank" rel="noopener">DM a Coincidencia</a> o por WhatsApp.</p>
     <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Ir al formulario →</a>
-    <p class="contact">Informes: <a href="https://wa.me/527776063068" target="_blank" rel="noopener">777 606 3068</a></p>
+    <p class="contact">Informes: <a href="https://wa.me/527776063668" target="_blank" rel="noopener">777 606 3668</a> · <a href="https://www.instagram.com/cafecoincidencia/" target="_blank" rel="noopener">@cafecoincidencia</a></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <span class="motto">Coincidir · Convivir · Competir</span>
-    <span>Concurso Arte Latte 2.0 · Café Coincidencia · Cuernavaca 2026</span>
+    <span>Concurso Arte Latte 2.0 · <a href="https://www.instagram.com/cafecoincidencia/" target="_blank" rel="noopener">Café Coincidencia</a> · Cuernavaca 2026</span>
   </div>
 </footer>
 
