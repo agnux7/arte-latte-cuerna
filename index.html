@@ -155,7 +155,17 @@
   .addr{font-size:clamp(1.15rem,2.4vw,1.5rem);letter-spacing:.08em;line-height:1.5;margin:8px 0 22px}
 
   /* sponsors */
-  .sponsors img{width:100%;max-width:960px;margin:30px auto 0;opacity:.92}
+  .logos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:36px 48px;max-width:960px;margin:36px auto 0}
+  .logos li{display:flex;align-items:center;justify-content:center}
+  .logos img{height:84px;width:auto;max-width:200px;object-fit:contain}
+  .logos .wide img{height:58px;max-width:250px}
+  .logos .tall img{height:104px}
+  @media (max-width:640px){
+    .logos{gap:28px 30px}
+    .logos img{height:64px;max-width:140px}
+    .logos .wide img{height:42px;max-width:180px}
+    .logos .tall img{height:80px}
+  }
 
   /* CTA */
   .final{text-align:center;padding:90px 0}
@@ -200,7 +210,7 @@
         <span class="y">2026</span>
         <div class="times">Competidores: 3:00 pm<br>Espectadores: 4:00 pm</div>
       </div>
-      <img class="cow" src="img/vaca.png" width="403" height="526" alt="Ilustración de una vaca vertiendo leche en una taza de café">
+      <img class="cow" src="img/vaca.png" width="789" height="1000" alt="Ilustración de una vaca vertiendo leche en una taza de café">
       <div class="hero-side">
         <img class="seal" src="img/sello.png" width="157" height="158" alt="Coincidir · Convivir · Competir">
       </div>
@@ -368,7 +378,21 @@
 <section class="sponsors" id="aliados">
   <div class="wrap reveal" style="text-align:center">
     <span class="eyebrow">Con el apoyo de</span>
-    <img src="img/patrocinadores.png" width="967" height="284" loading="lazy" alt="Logos de los cafés y aliados que apoyan el concurso">
+    <ul class="logos">
+      <li class="tall"><img src="img/logos/cafe-coincidencia.png" width="366" height="320" loading="lazy" alt="Café Coincidencia"></li>
+      <li class="tall"><img src="img/logos/sra-fifi.png" width="323" height="320" loading="lazy" alt="Sra. Fifi"></li>
+      <li><img src="img/logos/oa-cafe.png" width="120" height="87" loading="lazy" alt="OA Café"></li>
+      <li><img src="img/logos/flama.png" width="600" height="320" loading="lazy" alt="Aliado"></li>
+      <li class="wide"><img src="img/logos/teita.png" width="132" height="61" loading="lazy" alt="Teíta"></li>
+      <li><img src="img/logos/dr-caff.png" width="76" height="78" loading="lazy" alt="Dr. Caff"></li>
+      <li class="wide"><img src="img/logos/vinobreria.png" width="1190" height="320" loading="lazy" alt="Vinobrería"></li>
+      <li class="wide"><img src="img/logos/sintonia.png" width="1269" height="297" loading="lazy" alt="Sintonía, café con conciencia"></li>
+      <li class="tall"><img src="img/logos/sordos-morelos.png" width="582" height="320" loading="lazy" alt="Café Sordos Morelos"></li>
+      <li class="tall"><img src="img/logos/mal-de-altura.png" width="73" height="117" loading="lazy" alt="Mal de Altura"></li>
+      <li class="tall"><img src="img/logos/zaga.png" width="212" height="320" loading="lazy" alt="Zaga"></li>
+      <li class="tall"><img src="img/logos/anber.png" width="242" height="320" loading="lazy" alt="Anber, comunidad de café"></li>
+      <li><img src="img/logos/pajaro.png" width="94" height="104" loading="lazy" alt="Aliado"></li>
+    </ul>
   </div>
 </section>
 
