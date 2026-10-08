@@ -125,6 +125,21 @@
   .stat{border:1.5px solid var(--ink);border-radius:14px;padding:10px;text-align:center}
   .stat .lbl{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
   .stat b{font-weight:900;font-size:1.6rem;line-height:1.1}
+  .board{margin-top:18px;border:1.5px solid var(--ink);border-radius:16px;padding:14px 16px;background:rgba(255,253,248,.6)}
+  .board h3{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+  .board form{display:flex;gap:8px;margin-top:10px}
+  .board input{flex:1;min-width:0;font:400 1rem var(--sans);border:1.5px solid var(--ink);border-radius:999px;padding:.45em 1em;background:var(--milk);color:var(--ink)}
+  .board input:focus{outline:2px solid var(--ink);outline-offset:2px}
+  .board .msg{margin-top:8px;font-size:.88rem}
+  .board .msg.err{color:var(--red)}
+  .board ol{list-style:none;margin-top:10px;display:grid;gap:2px}
+  .board li{display:grid;grid-template-columns:26px 1fr auto auto;gap:10px;align-items:baseline;padding:4px 8px;border-radius:8px;font-size:.92rem}
+  .board li .pos{font-family:var(--hand);font-weight:700;font-size:1.15rem}
+  .board li .nv{font-size:.72rem;color:var(--ink-soft)}
+  .board li b{font-weight:800}
+  .board li.me{background:var(--ink);color:var(--paper)}
+  .board li.me .nv{color:var(--stain)}
+  .board li.gap{display:block;text-align:center;padding:0;line-height:.8;opacity:.5}
   .promo{margin-top:22px;border-top:1px dashed var(--ink);padding-top:16px}
   .promo .hand{font-family:var(--hand);font-weight:700;font-size:1.5rem;line-height:1.1}
   .promo p{margin-top:4px}
@@ -707,7 +722,7 @@ function drawIcons(){
 }
 function showCard(html,focusSel){
   $('card').innerHTML=html;$('overlay').hidden=false;drawIcons();
-  var f=$('card').querySelector(focusSel||'button');if(f)f.focus({preventScroll:true});
+  var f=$('card').querySelector(focusSel||'[data-act]')||$('card').querySelector('button');if(f)f.focus({preventScroll:true});
 }
 function hideCard(){$('overlay').hidden=true;}
 function titleCard(){
@@ -727,13 +742,15 @@ function statsHTML(){
 }
 function gameOver(){
   state='over';sfx.over();$('banner').hidden=true;$('boss').hidden=true;$('power').hidden=true;
-  showCard('<span class="eyebrow">Fin del juego</span><h2>Se te cortó la leche</h2>'+statsHTML()+
+  showCard('<span class="eyebrow">Fin del juego</span><h2>Se te cortó la leche</h2>'+statsHTML()+'<div class="board" id="board"></div>'+
     '<div class="row"><button class="btn" data-act="retry">Reintentar nivel '+level+'</button><button class="btn ghost" data-act="restart">Desde el nivel 1</button></div>'+promoHTML());
+  initBoard();
 }
 function victory(){
   state='won';$('banner').hidden=true;$('boss').hidden=true;$('power').hidden=true;
-  showCard('<span class="eyebrow">10 de 10</span><h2>¡La barra está a salvo!</h2><p>Derrotaste a El Gran Soluble. Ahora demuéstralo con la jarra.</p>'+statsHTML()+
+  showCard('<span class="eyebrow">10 de 10</span><h2>¡La barra está a salvo!</h2><p>Derrotaste a El Gran Soluble. Ahora demuéstralo con la jarra.</p>'+statsHTML()+'<div class="board" id="board"></div>'+
     '<div class="row"><button class="btn ghost" data-act="restart">Jugar otra vez</button></div>'+promoHTML());
+  initBoard();
 }
 function pauseGame(){
   if(state!=='play'&&state!=='intro'&&state!=='cleared')return;
@@ -744,6 +761,46 @@ function pauseGame(){
 }
 function resume(){if(state!=='paused')return;state=pausedFrom||'play';hideCard();focusGame();}
 
+/* ---------- tabla de puntos ---------- */
+var API='/api/puntos',CIERRE=new Date('2026-11-03T00:00:00-06:00').getTime(),saved=null;
+function esc(x){return String(x).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
+function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();}
+function listHTML(top,me,lugar,mejor){
+  if(!top.length)return '<p class="msg">Todavía no hay puntajes. ¡Sé el primero!</p>';
+  var h='<ol>',inTop=false;
+  top.forEach(function(r,i){var mine=me&&norm(r.apodo)===norm(me);if(mine)inTop=true;
+    h+='<li'+(mine?' class="me"':'')+'><span class="pos">'+(i+1)+'</span><b>'+esc(r.apodo)+'</b><span class="nv">Nv '+r.nivel+'</span><span>'+r.puntos+'</span></li>';});
+  if(me&&lugar&&!inTop)h+='<li class="gap">⋮</li><li class="me"><span class="pos">'+lugar+'</span><b>'+esc(me)+'</b><span class="nv"></span><span>'+mejor+'</span></li>';
+  return h+'</ol>';
+}
+function initBoard(){
+  var el=$('board');if(!el)return;
+  var abierta=Date.now()<=CIERRE,puede=abierta&&score>0&&saved!==score+'|'+level;
+  el.innerHTML='<h3>Tabla de la barra</h3>'+
+    (puede?'<form id="boardForm" autocomplete="off"><label class="sr-only" for="apodo">Tu apodo</label><input id="apodo" maxlength="16" placeholder="Tu apodo" value="'+esc(store.get('vaca-barista-apodo',''))+'"><button class="btn sm" type="submit">Guardar</button></form>':'')+
+    (!abierta?'<p class="msg">La tabla cerró el 2 de noviembre. Así quedó:</p>':'')+
+    '<div class="msg" id="boardMsg" aria-live="polite"></div><div id="boardList"><p class="msg">Cargando…</p></div>';
+  var form=$('boardForm');
+  if(form)form.addEventListener('submit',function(ev){ev.preventDefault();submitScore();});
+  fetch(API).then(function(r){return r.json().then(function(d){if(!r.ok)throw d;return d;});})
+    .then(function(d){if($('boardList'))$('boardList').innerHTML=listHTML(d.top||[],null);})
+    .catch(function(){if($('boardList'))$('boardList').innerHTML='<p class="msg">La tabla no está disponible por ahora.</p>';var f=$('boardForm');if(f)f.remove();});
+}
+function submitScore(){
+  var inp=$('apodo'),msg=$('boardMsg'),btn=$('boardForm').querySelector('button'),apodo=inp.value.replace(/\s+/g,' ').trim();
+  if(apodo.length<2){msg.className='msg err';msg.textContent='Escribe un apodo de al menos 2 letras.';inp.focus();return;}
+  btn.disabled=true;msg.className='msg';msg.textContent='Guardando…';
+  fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apodo:apodo,puntos:score,nivel:level})})
+    .then(function(r){return r.json().then(function(d){if(!r.ok)throw d;return d;});})
+    .then(function(d){
+      saved=score+'|'+level;store.set('vaca-barista-apodo',d.apodo);
+      var f=$('boardForm');if(f)f.remove();
+      msg.className='msg';msg.textContent=d.nuevo?'¡Guardado! Vas en el lugar '+d.lugar+' de '+d.total+'.':'Tu mejor puntaje sigue siendo '+d.mejor+'. Vas en el lugar '+d.lugar+' de '+d.total+'.';
+      $('boardList').innerHTML=listHTML(d.top||[],d.apodo,d.lugar,d.mejor);
+    })
+    .catch(function(d){btn.disabled=false;msg.className='msg err';msg.textContent=(d&&d.error)||'No se pudo guardar. Intenta de nuevo.';});
+}
+
 /* ---------- flujo ---------- */
 function focusGame(){try{cv.focus({preventScroll:true});}catch(e){}}
 function beginLevel(n){
@@ -753,7 +810,7 @@ function beginLevel(n){
   state='intro';introT=2.6;hideCard();updateHUD();
   if(n>unlocked){unlocked=n;store.set('vaca-barista-unlocked',unlocked);}
 }
-function startGame(n){score=0;lives=3;sfx.ensure();focusGame();beginLevel(n||1);}
+function startGame(n){score=0;lives=3;saved=null;sfx.ensure();focusGame();beginLevel(n||1);}
 function retryLevel(){score=scoreAtStart;lives=3;sfx.ensure();focusGame();beginLevel(level);}
 function levelCleared(){
   state='cleared';var bonus=100*level+lives*50;addScore(bonus);sfx.clear();shots=[];
@@ -778,6 +835,7 @@ $('soundBtn').addEventListener('click',function(){sfx.ensure();sfx.toggle();upda
 /* ---------- controles ---------- */
 var KEYMAP={ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right',ArrowUp:'fire',w:'fire',W:'fire',' ':'fire'};
 window.addEventListener('keydown',function(ev){
+  if(ev.target&&ev.target.tagName==='INPUT')return;
   var k=KEYMAP[ev.key];
   if(k&&$('overlay').hidden){keys[k]=true;ev.preventDefault();return;}
   if(ev.key==='p'||ev.key==='P'||ev.key==='Escape'){if(state==='paused')resume();else pauseGame();ev.preventDefault();}
