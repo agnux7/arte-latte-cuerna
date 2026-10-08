@@ -137,12 +137,10 @@
   .hero{padding:56px 0 40px;text-align:center;position:relative}
   .hero h1{font-weight:900;font-size:clamp(3rem,11vw,7.6rem);line-height:.92;letter-spacing:-.035em}
   .hero h1 .ed{font-family:var(--hand);font-weight:500;font-size:.34em;letter-spacing:0;vertical-align:-.1em;margin-left:.05em;display:inline-block;transform:rotate(-4deg)}
-  .hero .open{font-size:clamp(1.15rem,3vw,1.8rem);font-weight:400;margin-top:14px}
   .hero-grid{display:grid;grid-template-columns:1fr minmax(220px,360px) 1fr;align-items:center;gap:24px;margin-top:36px}
   .hero-date{text-align:left}
   .hero-date .d{font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:.18em;font-weight:400;line-height:1.2}
   .hero-date .y{display:inline-block;margin-top:14px;font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:500;text-decoration:underline;text-underline-offset:5px}
-  .hero-date .times{margin-top:28px;font-family:var(--serif);font-size:1.05rem;line-height:1.5}
   .cow{width:100%;max-width:360px;margin:0 auto;animation:sway 6s ease-in-out infinite;transform-origin:50% 100%}
   @keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
   @media (prefers-reduced-motion:reduce){.cow,.seal{animation:none}}
@@ -161,7 +159,6 @@
     .hero-side{grid-area:side;justify-self:end;text-align:right}
     .seal{width:96px;margin:0 0 0 auto}
     .hero-date .d{letter-spacing:.1em}
-    .hero-date .times{margin-top:14px;font-size:.85rem;white-space:nowrap}
   }
 
   /* sections */
@@ -276,13 +273,11 @@
 <header class="hero" id="inicio">
   <div class="wrap">
     <h1><span class="sr-only">Concurso de arte latte 2.0 en Cuernavaca</span><span aria-hidden="true">Concurso arte<span class="ed">2.0</span><br>latte</span></h1>
-    <p class="open">(Abierto al público)</p>
 
     <div class="hero-grid">
       <div class="hero-date">
         <div class="d">Noviembre 2</div>
         <span class="y">2026</span>
-        <div class="times">Competidores: 3:00 pm<br>Espectadores: 4:00 pm</div>
       </div>
       <img class="cow" fetchpriority="high" src="img/vaca.png" width="789" height="1000" alt="Ilustración de una vaca vertiendo leche en una taza de café">
       <div class="hero-side">
