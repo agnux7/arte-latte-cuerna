@@ -1,16 +1,86 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Concurso Arte Latte 2.0 · Café Coincidencia</title>
-<meta name="description" content="Segunda edición del Concurso de Arte Latte en Cuernavaca. 2 de noviembre de 2026 en Café Coincidencia. Abierto al público.">
-<meta property="og:title" content="Concurso Arte Latte 2.0 · Cuernavaca">
-<meta property="og:description" content="2 de noviembre de 2026 · Café Coincidencia, Col. Miraval. Competidores 3:00 pm · Espectadores 4:00 pm.">
-<meta property="og:image" content="img/poster.webp">
+<title>Concurso de Arte Latte en Cuernavaca 2026 · Café Coincidencia</title>
+<meta name="description" content="Concurso de Arte Latte 2.0 en Cuernavaca, Morelos. Lunes 2 de noviembre de 2026 en Café Coincidencia, Col. Miraval. Inscripción $200 MXN hasta el 31 de octubre; espectadores gratis.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://arte-latte-cuerna.vercel.app/">
+<meta name="geo.region" content="MX-MOR">
+<meta name="geo.placename" content="Cuernavaca">
+
 <meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Concurso Arte Latte 2.0">
+<meta property="og:url" content="https://arte-latte-cuerna.vercel.app/">
+<meta property="og:title" content="Concurso de Arte Latte 2.0 · Cuernavaca, 2 de noviembre">
+<meta property="og:description" content="Café Coincidencia, Col. Miraval. Competidores 3:00 pm · Público 4:00 pm. Inscripción $200 MXN, espectadores gratis.">
+<meta property="og:image" content="https://arte-latte-cuerna.vercel.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Concurso arte latte 2.0, 2 de noviembre de 2026 en Café Coincidencia, Cuernavaca">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Concurso de Arte Latte 2.0 · Cuernavaca">
+<meta name="twitter:description" content="2 de noviembre de 2026 en Café Coincidencia. Inscripción $200 MXN, espectadores gratis.">
+<meta name="twitter:image" content="https://arte-latte-cuerna.vercel.app/img/og.jpg">
+
 <meta name="theme-color" content="#f3e4c6">
-<link rel="icon" href="img/sello.png">
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" as="image" href="img/vaca.png" fetchpriority="high">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Concurso de Arte Latte 2.0",
+  "description": "Segunda edición del concurso de arte latte en Cuernavaca, Morelos, organizado por Café Coincidencia. Tres rondas: eliminación directa (Smackdown), rúbrica y final con diseño libre. Abierto al público.",
+  "startDate": "2026-11-02T15:00:00-06:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "inLanguage": "es-MX",
+  "image": ["https://arte-latte-cuerna.vercel.app/img/og.jpg", "https://arte-latte-cuerna.vercel.app/img/poster.webp"],
+  "url": "https://arte-latte-cuerna.vercel.app/",
+  "location": {
+    "@type": "Place",
+    "name": "Café Coincidencia",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Francisco I. Madero 503, Col. Miraval",
+      "addressLocality": "Cuernavaca",
+      "addressRegion": "Morelos",
+      "addressCountry": "MX"
+    },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Calle+Francisco+I.+Madero+503,+Miraval,+Cuernavaca,+Morelos"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Café Coincidencia",
+    "url": "https://www.instagram.com/cafecoincidencia/",
+    "telephone": "+52 777 606 3668"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Inscripción de competidor",
+      "price": "200",
+      "priceCurrency": "MXN",
+      "availability": "https://schema.org/LimitedAvailability",
+      "validThrough": "2026-10-31T23:59:00-06:00",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor"
+    },
+    {
+      "@type": "Offer",
+      "name": "Entrada para espectadores",
+      "price": "0",
+      "priceCurrency": "MXN",
+      "availability": "https://schema.org/InStock",
+      "url": "https://arte-latte-cuerna.vercel.app/"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet">
@@ -41,6 +111,7 @@
     background-attachment:fixed;
     overflow-x:hidden;
   }
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   img{max-width:100%;height:auto;display:block}
   a{color:inherit}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
@@ -204,7 +275,7 @@
 
 <header class="hero" id="inicio">
   <div class="wrap">
-    <h1>Concurso arte<span class="ed">2.0</span><br>latte</h1>
+    <h1><span class="sr-only">Concurso de arte latte 2.0 en Cuernavaca</span><span aria-hidden="true">Concurso arte<span class="ed">2.0</span><br>latte</span></h1>
     <p class="open">(Abierto al público)</p>
 
     <div class="hero-grid">
@@ -213,7 +284,7 @@
         <span class="y">2026</span>
         <div class="times">Competidores: 3:00 pm<br>Espectadores: 4:00 pm</div>
       </div>
-      <img class="cow" src="img/vaca.png" width="789" height="1000" alt="Ilustración de una vaca vertiendo leche en una taza de café">
+      <img class="cow" fetchpriority="high" src="img/vaca.png" width="789" height="1000" alt="Ilustración de una vaca vertiendo leche en una taza de café">
       <div class="hero-side">
         <img class="seal" src="img/sello.png" width="157" height="158" alt="Coincidir · Convivir · Competir">
       </div>
@@ -228,6 +299,7 @@
   </div>
 </header>
 
+<main>
 <section id="evento">
   <div class="wrap reveal">
     <span class="eyebrow">Segunda edición · Cuernavaca, Morelos</span>
@@ -407,6 +479,7 @@
     <p class="contact">Informes: <a href="https://wa.me/527776063668" target="_blank" rel="noopener">777 606 3668</a> · <a href="https://www.instagram.com/cafecoincidencia/" target="_blank" rel="noopener">@cafecoincidencia</a></p>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
@@ -439,5 +512,8 @@
     els.forEach(function(e){ io.observe(e); });
   })();
 </script>
+<!-- Vercel Web Analytics (sin cookies) -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

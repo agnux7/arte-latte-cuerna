@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arte-latte-cuerna.vercel.app/sitemap.xml
