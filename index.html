@@ -28,7 +28,7 @@
 <meta name="theme-color" content="#f3e4c6">
 <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="preload" as="image" href="img/vaca.png" fetchpriority="high">
+<link rel="preload" as="image" href="img/vaca.webp" type="image/webp" fetchpriority="high">
 
 <script type="application/ld+json">
 {
@@ -40,7 +40,7 @@
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "inLanguage": "es-MX",
-  "image": ["https://arte-latte-cuerna.vercel.app/img/og.jpg", "https://arte-latte-cuerna.vercel.app/img/poster.webp"],
+  "image": ["https://arte-latte-cuerna.vercel.app/img/og.jpg"],
   "url": "https://arte-latte-cuerna.vercel.app/",
   "location": {
     "@type": "Place",
@@ -83,7 +83,10 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500&family=Libre+Caslon+Text&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500&family=Libre+Caslon+Text&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500&family=Libre+Caslon+Text&display=swap"></noscript>
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
     --paper:#f3e4c6;
@@ -144,6 +147,7 @@
   .btn:hover{transform:translateY(-2px)}
   .btn.ghost{background:transparent;color:var(--ink)}
   .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn.closed{background:transparent;color:var(--ink-soft);border-color:var(--line);cursor:default;transform:none}
   .btn.sm{padding:.55em 1.1em;font-size:.88rem}
 
   /* hero */
@@ -261,12 +265,11 @@
 
   footer{border-top:1px solid var(--line);padding:28px 0;font-size:.85rem;color:var(--ink-soft)}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  footer .credit{opacity:.7}
   footer .credit a{text-decoration:none;border-bottom:1px solid var(--line)}
   footer .credit a:hover{border-color:var(--ink)}
   footer .motto{letter-spacing:.22em;text-transform:uppercase;font-weight:500}
 
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+  .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
@@ -285,7 +288,7 @@
       <a href="/juego/">Juego</a>
     </div>
     <div class="nav-end">
-      <a class="btn sm" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Inscríbete</a>
+      <a class="btn sm" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener" data-inscripcion>Inscríbete</a>
       <button class="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
         <svg class="bars" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5h12M3 9h12M3 13h12"/></svg>
         <svg class="x" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l10 10M14 4L4 14"/></svg>
@@ -303,18 +306,18 @@
         <div class="d">Noviembre 2</div>
         <span class="y">2026</span>
       </div>
-      <img class="cow" fetchpriority="high" src="img/vaca.png" width="789" height="1000" alt="Ilustración de una vaca vertiendo leche en una taza de café">
+      <img class="cow" fetchpriority="high" src="img/vaca.webp" width="720" height="913" alt="Ilustración de una vaca vertiendo leche en una taza de café">
       <div class="hero-side">
         <img class="seal" src="img/sello.png" width="157" height="158" alt="Coincidir · Convivir · Competir">
       </div>
     </div>
 
     <div class="hero-cta">
-      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Inscríbete como competidor →</a>
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener" data-inscripcion>Inscríbete como competidor →</a>
       <a class="btn ghost" href="#dinamica">Ver dinámica</a>
     </div>
     <p class="countdown" id="countdown"></p>
-    <p class="countdown" style="margin-top:6px">Inscripción $200 MXN · cierra el 31 de octubre</p>
+    <p class="countdown" id="cierre" style="margin-top:6px">Inscripción $200 MXN · cierra el 31 de octubre</p>
   </div>
 </header>
 
@@ -443,7 +446,7 @@
         <span class="eyebrow">Premios</span>
         <h2>El podio</h2>
         <p class="lead">Habrá premios para los tres primeros lugares de la final.</p>
-        <div class="podium" aria-label="Podio: 1er, 2do y 3er lugar">
+        <div class="podium" role="img" aria-label="Podio: 1er, 2do y 3er lugar">
           <div class="step p2"><b>2°</b>lugar</div>
           <div class="step p1"><b>1°</b>lugar</div>
           <div class="step p3"><b>3°</b>lugar</div>
@@ -473,19 +476,19 @@
   <div class="wrap reveal" style="text-align:center">
     <span class="eyebrow">Con el apoyo de</span>
     <ul class="logos">
-      <li class="tall"><img src="img/logos/cafe-coincidencia.png" width="366" height="320" loading="lazy" alt="Café Coincidencia"></li>
-      <li class="tall"><img src="img/logos/sra-fifi.png" width="323" height="320" loading="lazy" alt="Sra. Fifi"></li>
-      <li><img src="img/logos/oa-cafe.png" width="439" height="320" loading="lazy" alt="OA Café"></li>
-      <li><img src="img/logos/flama.png" width="600" height="320" loading="lazy" alt="Aliado"></li>
-      <li class="wide"><img src="img/logos/teita.png" width="709" height="320" loading="lazy" alt="Teíta"></li>
-      <li><img src="img/logos/dr-caff.png" width="76" height="78" loading="lazy" alt="Dr. Caff"></li>
-      <li class="wide"><img src="img/logos/vinobreria.png" width="1190" height="320" loading="lazy" alt="Vinobrería"></li>
-      <li class="wide"><img src="img/logos/sintonia.png" width="1269" height="297" loading="lazy" alt="Sintonía, café con conciencia"></li>
-      <li class="tall"><img src="img/logos/sordos-morelos.png" width="582" height="320" loading="lazy" alt="Café Sordos Morelos"></li>
-      <li class="tall"><img src="img/logos/mal-de-altura.png" width="73" height="117" loading="lazy" alt="Mal de Altura"></li>
-      <li class="tall"><img src="img/logos/zaga.png" width="212" height="320" loading="lazy" alt="Zaga"></li>
-      <li class="tall"><img src="img/logos/anber.png" width="242" height="320" loading="lazy" alt="Anber, comunidad de café"></li>
-      <li><img src="img/logos/pajaro.png" width="94" height="104" loading="lazy" alt="Aliado"></li>
+      <li class="tall"><img src="img/logos/cafe-coincidencia.webp" width="366" height="320" loading="lazy" alt="Café Coincidencia"></li>
+      <li class="tall"><img src="img/logos/sra-fifi.webp" width="323" height="320" loading="lazy" alt="Sra. Fifi"></li>
+      <li><img src="img/logos/oa-cafe.webp" width="439" height="320" loading="lazy" alt="OA Café"></li>
+      <li><img src="img/logos/flama.webp" width="600" height="320" loading="lazy" alt="Aliado"></li>
+      <li class="wide"><img src="img/logos/teita.webp" width="709" height="320" loading="lazy" alt="Teíta"></li>
+      <li><img src="img/logos/dr-caff.webp" width="76" height="78" loading="lazy" alt="Dr. Caff"></li>
+      <li class="wide"><img src="img/logos/vinobreria.webp" width="1190" height="320" loading="lazy" alt="Vinobrería"></li>
+      <li class="wide"><img src="img/logos/sintonia.webp" width="1269" height="297" loading="lazy" alt="Sintonía, café con conciencia"></li>
+      <li class="tall"><img src="img/logos/sordos-morelos.webp" width="582" height="320" loading="lazy" alt="Café Sordos Morelos"></li>
+      <li class="tall"><img src="img/logos/mal-de-altura.webp" width="73" height="117" loading="lazy" alt="Mal de Altura"></li>
+      <li class="tall"><img src="img/logos/zaga.webp" width="212" height="320" loading="lazy" alt="Zaga"></li>
+      <li class="tall"><img src="img/logos/anber.webp" width="242" height="320" loading="lazy" alt="Anber, comunidad de café"></li>
+      <li><img src="img/logos/pajaro.webp" width="94" height="104" loading="lazy" alt="Aliado"></li>
     </ul>
   </div>
 </section>
@@ -503,7 +506,7 @@
   <div class="wrap reveal">
     <h2>¿Te avientas?</h2>
     <p>Inscríbete con el formulario oficial: $200 MXN, cupo limitado, hasta el 31 de octubre. También puedes escribirle por <a href="https://www.instagram.com/cafecoincidencia/" target="_blank" rel="noopener">DM a Coincidencia</a> o por WhatsApp.</p>
-    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Ir al formulario →</a>
+    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener" data-inscripcion>Ir al formulario →</a>
     <p class="contact">Informes: <a href="https://wa.me/527776063668" target="_blank" rel="noopener">777 606 3668</a> · <a href="https://www.instagram.com/cafecoincidencia/" target="_blank" rel="noopener">@cafecoincidencia</a></p>
   </div>
 </section>
@@ -528,6 +531,16 @@
       el.innerHTML = 'Faltan <b>' + d + '</b> días, <b>' + h + '</b> h y <b>' + m + '</b> min';
     }
     tick(); setInterval(tick, 30000);
+  })();
+
+  // Inscripciones: se cierran solas al terminar el 31 de octubre
+  (function(){
+    if (Date.now() < new Date('2026-11-01T00:00:00-06:00').getTime()) return;
+    document.querySelectorAll('[data-inscripcion]').forEach(function(a){
+      a.removeAttribute('href'); a.removeAttribute('target'); a.setAttribute('aria-disabled', 'true');
+      a.classList.add('closed'); a.textContent = 'Inscripciones cerradas';
+    });
+    var c = document.getElementById('cierre'); if (c) c.textContent = 'Las inscripciones cerraron el 31 de octubre · te esperamos como espectador';
   })();
 
   // Menú en celular

@@ -19,7 +19,9 @@
 <link rel="preload" as="image" href="/img/vaca.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Caveat:wght@500;700&display=swap"></noscript>
 <style>
   :root{
     --paper:#f3e4c6;
@@ -113,7 +115,7 @@
   .levels button{font:500 .85rem var(--sans);width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;cursor:pointer;color:var(--ink)}
   .levels button:hover{background:var(--ink);color:var(--paper)}
   .guide{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
-  .guide h3{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+  .guide h2{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
   .guide ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:12px}
   .guide li{display:grid;grid-template-columns:40px 1fr auto;gap:8px;align-items:center;font-size:.85rem;line-height:1.25}
   .guide li b{font-weight:800;display:block}
@@ -126,7 +128,7 @@
   .stat .lbl{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
   .stat b{font-weight:900;font-size:1.6rem;line-height:1.1}
   .board{margin-top:18px;border:1.5px solid var(--ink);border-radius:16px;padding:14px 16px;background:rgba(255,253,248,.6)}
-  .board h3{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+  .board h2{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
   .board form{display:flex;gap:8px;margin-top:10px}
   .board input{flex:1;min-width:0;font:400 1rem var(--sans);border:1.5px solid var(--ink);border-radius:999px;padding:.45em 1em;background:var(--milk);color:var(--ink)}
   .board input:focus{outline:2px solid var(--ink);outline-offset:2px}
@@ -157,7 +159,7 @@
   <div class="pill"><span class="lbl">Nivel</span><b id="lvl">1</b><span id="lvlName">La barra</span></div>
   <div class="pill mid"><span class="lbl">Puntos</span><b id="score">0</b><small>Récord <span id="best">0</span></small></div>
   <div class="right">
-    <span class="pill lives" id="lives" aria-label="Vidas"></span>
+    <span class="pill lives" id="lives" role="img" aria-label="Vidas"></span>
     <button class="icon-btn" id="pauseBtn" aria-label="Pausa"><svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></button>
     <button class="icon-btn" id="soundBtn" aria-label="Sonido"></button>
   </div>
@@ -710,7 +712,7 @@ function promoHTML(){
   return '<a class="back" href="/">← Volver a Arte Latte 2.0</a>';
 }
 function guideHTML(){
-  var h='<div class="guide"><h3>Guía de la barra</h3><ul>';
+  var h='<div class="guide"><h2>Guía de la barra</h2><ul>';
   ORDER.forEach(function(k){var d=TYPES[k];h+='<li><canvas data-icon="'+k+'" width="80" height="80" aria-hidden="true"></canvas><div><b>'+d.name+'</b><span>'+d.desc+'</span></div><em>'+d.pts+'</em></li>';});
   return h+'</ul><p class="soft">Antes de disparar, el enemigo tiembla y le sale un <b style="color:#c4412d">!</b>. El círculo rojo en la barra marca dónde caerá su café. Escóndete detrás de las tazas. Atrapa el grano dorado para triple chorro y el corazón de latte para una vida extra.</p></div>';
 }
@@ -722,6 +724,7 @@ function drawIcons(){
 }
 function showCard(html,focusSel){
   $('card').innerHTML=html;$('overlay').hidden=false;drawIcons();
+  var t=$('card').querySelector('h1,h2');if(t){t.id='cardTitle';$('card').setAttribute('aria-labelledby','cardTitle');}else $('card').removeAttribute('aria-labelledby');
   var f=$('card').querySelector(focusSel||'[data-act]')||$('card').querySelector('button');if(f)f.focus({preventScroll:true});
 }
 function hideCard(){$('overlay').hidden=true;}
@@ -776,7 +779,7 @@ function listHTML(top,me,lugar,mejor){
 function initBoard(){
   var el=$('board');if(!el)return;
   var abierta=Date.now()<=CIERRE,puede=abierta&&score>0&&saved!==score+'|'+level;
-  el.innerHTML='<h3>Tabla de la barra</h3>'+
+  el.innerHTML='<h2>Tabla de la barra</h2>'+
     (puede?'<form id="boardForm" autocomplete="off"><label class="sr-only" for="apodo">Tu apodo</label><input id="apodo" maxlength="16" placeholder="Tu apodo" value="'+esc(store.get('vaca-barista-apodo',''))+'"><button class="btn sm" type="submit">Guardar</button></form>':'')+
     (!abierta?'<p class="msg">La tabla cerró el 2 de noviembre. Así quedó:</p>':'')+
     '<div class="msg" id="boardMsg" aria-live="polite"></div><div id="boardList"><p class="msg">Cargando…</p></div>';
