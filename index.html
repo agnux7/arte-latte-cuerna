@@ -124,7 +124,20 @@
   .links{display:flex;gap:22px;font-size:.92rem;font-weight:400}
   .links a{text-decoration:none;opacity:.75}
   .links a:hover{opacity:1}
-  @media (max-width:760px){.links{display:none}}
+  .nav-end{display:flex;align-items:center;gap:10px}
+  .menu-btn{display:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;place-items:center}
+  .menu-btn svg{width:18px;height:18px}
+  .menu-btn .x{display:none}
+  nav.open .menu-btn .bars{display:none}
+  nav.open .menu-btn .x{display:block}
+  @media (max-width:760px){
+    .menu-btn{display:grid}
+    .links{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;padding:6px 20px 14px;
+      background:rgba(243,228,198,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    nav.open .links{display:flex}
+    .links a{opacity:1;padding:12px 2px;font-size:1.05rem;border-bottom:1px solid var(--line)}
+    .links a:last-child{border-bottom:0}
+  }
 
   /* buttons */
   .btn{display:inline-flex;align-items:center;gap:.5em;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:500;padding:.85em 1.5em;border-radius:999px;border:2px solid var(--ink);transition:transform .15s, background .15s, color .15s;font-size:1rem}
@@ -263,7 +276,7 @@
 <nav>
   <div class="wrap">
     <a class="brand" href="#inicio"><img src="img/sello.png" alt="">Arte Latte 2.0</a>
-    <div class="links">
+    <div class="links" id="menu">
       <a href="#evento">Evento</a>
       <a href="#dinamica">Dinámica</a>
       <a href="#rubrica">Evaluación</a>
@@ -271,7 +284,13 @@
       <a href="#ubicacion">Ubicación</a>
       <a href="/juego/">Juego</a>
     </div>
-    <a class="btn sm" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Inscríbete</a>
+    <div class="nav-end">
+      <a class="btn sm" href="https://docs.google.com/forms/d/e/1FAIpQLSen2vAQOhZOSpzuXI-fpXkjGqCiZBKgepL5cmC9R_HdSW3g4Q/viewform?usp=publish-editor" target="_blank" rel="noopener">Inscríbete</a>
+      <button class="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <svg class="bars" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5h12M3 9h12M3 13h12"/></svg>
+        <svg class="x" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l10 10M14 4L4 14"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -509,6 +528,16 @@
       el.innerHTML = 'Faltan <b>' + d + '</b> días, <b>' + h + '</b> h y <b>' + m + '</b> min';
     }
     tick(); setInterval(tick, 30000);
+  })();
+
+  // Menú en celular
+  (function(){
+    var nav = document.querySelector('nav'), btn = nav.querySelector('.menu-btn');
+    function set(open){ nav.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú'); }
+    btn.addEventListener('click', function(){ set(!nav.classList.contains('open')); });
+    nav.querySelectorAll('.links a').forEach(function(a){ a.addEventListener('click', function(){ set(false); }); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+    document.addEventListener('click', function(e){ if (!nav.contains(e.target)) set(false); });
   })();
 
   // Aparición suave al hacer scroll
